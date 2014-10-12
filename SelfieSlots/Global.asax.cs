@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
@@ -10,7 +11,8 @@ namespace SelfieSlots
     {
         protected void Application_Start()
         {
-            RouteTable.Routes.MapConnection<Connection>("echo", "/echo", new ConnectionConfiguration() { EnableCrossDomain = true });
+            RouteTable.Routes.MapConnection<RtConnection>("connect", "/connect", new ConnectionConfiguration() { EnableCrossDomain = true });
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
